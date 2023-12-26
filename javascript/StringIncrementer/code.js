@@ -1,17 +1,26 @@
 function incrementString (string) {
-  const parts = string.split(/(\d+)/)
-  console.log(parts)
-  const numberSuffixIndex = (parts.length > 1) ? parts[parts.length - 2] : 0
-  const wordBase = parts.slice(0, Math.max(numberSuffixIndex, 1)).join('')
-  console.log(wordBase)
-  const oldNumberSuffix = parts[numberSuffixIndex] ? parts[numberSuffixIndex] : '0'
-  console.log(oldNumberSuffix)
+  const segments = string.trim().split(/(\d+)/).filter(segment => segment.length > 0)
+
+  const numberSuffixIndex = calcNumberSuffixIndex(segments)
+  const stringBase = numberSuffixIndex === -1 ? segments[0] : segments.slice(0, numberSuffixIndex).join('')
+
+  const oldNumberSuffix = segments[numberSuffixIndex] ? segments[numberSuffixIndex] : '0'
 
   const newNumber = parseInt(oldNumberSuffix, 10) + 1
   const newNumberSuffix = newNumber.toString().padStart(oldNumberSuffix.length, '0')
-  return `${wordBase}${newNumberSuffix}`
+  return `${stringBase}${newNumberSuffix}`
+}
+
+// given list of string segments, return index of segment containing number to be incremented
+// if no such number, return -1
+function calcNumberSuffixIndex(stringSegments) {
+  if (stringSegments.length === 1 && isNaN(stringSegments[0])) {
+    return -1
+  }
+  return stringSegments.length - 1
 }
 
 export {
-  incrementString
+  incrementString,
+  calcNumberSuffixIndex
 }
