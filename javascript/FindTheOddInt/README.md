@@ -3,6 +3,7 @@
 ## Metadata
 ID: 54da5a58ea159efa38000836
 URL: https://www.codewars.com/kata/54da5a58ea159efa38000836/train/javascript
+Difficulty: 6 kyu
 
 ## Notes
 Two interesting solutions.
