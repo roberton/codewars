@@ -1,4 +1,4 @@
-# Template
+# Bit Counting
 
 ## Metadata
 ID: 526571aae218b8ee490006f4
