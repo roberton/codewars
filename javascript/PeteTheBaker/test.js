@@ -1,0 +1,17 @@
+import { describe, it } from "node:test"
+import assert from "node:assert/strict"
+import { cakes } from "./code.js"
+
+describe('cakes', () => {
+  it('should pass the first example test', () => {
+    const recipe = {flour: 500, sugar: 200, eggs: 1}
+    const available = {flour: 1200, sugar: 1200, eggs: 5, milk: 200}
+    assert.strictEqual(cakes(recipe, available), 2)
+  })
+
+  it('should pass the second example test', () => {
+    const recipe = {apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}
+    const available = {sugar: 500, flour: 2000, milk: 2000}
+    assert.strictEqual(cakes(recipe, available), 0)
+  })
+})
