@@ -1,19 +1,23 @@
 function scramble(source, target) {
-  console.log(source, target)
+  console.log(source.length, target.length)
+  // console.log(source, target)
 
-  const targetLetters = target.split('')
-  const availableLetters = source.split('')
+  const sortLetters = (a, b) => a.charCodeAt(0) - b.charCodeAt(0)
 
-  return targetLetters.every(letter => {
-    console.log(`letter: ${letter}, available: ${availableLetters}`)
-    const index = availableLetters.indexOf(letter)
+  const targetLetters = target.split('').sort(sortLetters)
+  const availableLetters = source.split('').sort(sortLetters)
+  let availableStart = 0
+
+  return targetLetters.every((letter, targetIndex) => {
+    const index = availableLetters.indexOf(letter, availableStart)
     if (index === -1) {
-      console.log(`didn't find ${letter}`)
+      return false
+    }
+    if ((target.length - targetIndex) > (source.length - index)) {
       return false
     }
 
-    console.log(`did find ${letter}`)
-    availableLetters.splice(index, 1)
+    availableStart = index + 1
     return true
   })
 }
